@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('body');
-            $table->integer('orderable_id');
-            $table->string('orderable_type');
-            $table->timestamps();
+            $table->string('description')->nullable();
+            $table->string('delivery_time');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->unsignedInteger('time_created')->nullable();
+            $table->unsignedInteger('time_updated')->nullable();
+            $table->unsignedInteger('deleted_at')->nullable();
+            $table->unique(['user_id']);
+            $table->engine = 'InnoDB';
         });
     }
 

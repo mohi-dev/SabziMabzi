@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('detail');
-            $table->timestamps();
+            $table->string('price');
+            $table->string('description')->nullable();
+            $table->unsignedInteger('time_created')->nullable();
+            $table->unsignedInteger('time_updated')->nullable();
+            $table->unsignedInteger('deleted_at')->nullable();
+            $table->engine = 'InnoDB';
         });
     }
 

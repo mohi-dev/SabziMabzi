@@ -22,8 +22,8 @@ class Order extends Model
         'orderable_type',
     ];
 
-    public function orderable(): MorphTo
+    public function products()
     {
-        return $this->morphTo();
+        return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id');
     }
 }
