@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Traits\TimeStamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +13,12 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use TimeStamps, HasFactory, Notifiable, HasApiTokens;
+
+
+    const CREATED_AT = 'time_created';
+    const UPDATED_AT = 'time_updated';
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.

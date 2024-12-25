@@ -71,6 +71,4 @@ class UserServiceImplement extends ServiceApi implements UserService
       return $this->exceptionResponse($exception);
     }
   }
-
-  // Define your custom methods :)
 }
