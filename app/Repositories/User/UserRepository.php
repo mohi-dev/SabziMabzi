@@ -10,6 +10,5 @@ use LaravelEasyRepository\Repository;
 interface UserRepository extends Repository
 {
 
-    public function findByEmail(string $email): ?User;
     public function getRelatedOrders(string|int $id): ?Collection;
 }

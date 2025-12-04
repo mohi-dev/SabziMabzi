@@ -14,18 +14,14 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    /**
-     * show all
-     */
-    public function show(): JsonResponse
-    {
-        return $this->userService->findByEmail('mohammad@gmail.comw')->toJson();
-        // more action
-    }
-
     public function store(UserRequest $request): JsonResponse
     {
         return $this->userService->create($request->validated())->toJson();
+    }
+
+    public function update(UserRequest $request, $id): JsonResponse
+    {
+        return $this->userService->update($id, $request->validated())->toJson();
     }
 
     public function relation(string|int $id): JsonResponse

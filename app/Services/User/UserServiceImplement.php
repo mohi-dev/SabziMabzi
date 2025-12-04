@@ -33,29 +33,23 @@ class UserServiceImplement extends ServiceApi implements UserService
     $this->userRepository = $userRepository;
   }
 
-  public function findByEmail(string $email): UserService
-  {
-    try {
-      $result = $this->userRepository->findByEmail($email);
-      if (is_null($result)) {
-        return $this->setCode(404)
-          ->setMessage('Not Found')
-          ->setError('kire khar');
-      }
-      return $this->setCode(200)
-        ->setMessage("OK")
-        ->setData($result);
-    } catch (\Exception $exception) {
-      return $this->exceptionResponse($exception);
-    }
-  }
-
   public function create($data)
   {
     try {
       return $this->setData($this->userRepository->create($data))
         ->setMessage('Created')
         ->setCode(Response::HTTP_CREATED);
+    } catch (\Exception $exception) {
+      return $this->exceptionResponse($exception);
+    }
+  }
+
+  public function update($id, array $data)
+  {
+    try {
+      return $this->setData($this->userRepository->update($id, $data))
+        ->setMessage('Updated !')
+        ->setCode(Response::HTTP_OK);
     } catch (\Exception $exception) {
       return $this->exceptionResponse($exception);
     }

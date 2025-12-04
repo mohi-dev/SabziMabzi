@@ -30,10 +30,22 @@ class UserRequest extends FormRequest
             ];
     }
 
+    public function updateRules()
+    {
+        return
+            [
+                'name' => 'string',
+                'address' => 'string',
+                'phone' => 'regex:/^(09)(\d{9})$/im',
+            ];
+    }
+
     public function rules(): array
     {
         if ($this->is('api/users/add')) {
             return $this->createRules();
+        } elseif ($this->is('api/users/edit/*')) {
+            return $this->updateRules();
         }
         return [];
     }

@@ -22,11 +22,6 @@ class UserRepositoryImplement extends Eloquent implements UserRepository
     {
         $this->model = $model;
     }
-
-    public function findByEmail(string $email): ?User
-    {
-        return $this->model->where('email', $email)->first();
-    }
     public function getRelatedOrders(string|int $id): ?Collection
     {
         $user = $this->findOrFail($id);
