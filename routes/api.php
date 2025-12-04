@@ -16,7 +16,7 @@ Route::prefix('users')->group(function () {
     Route::match(['GET'], '/', [UserController::class, 'list']);
     Route::match(['GET'], '/{id}', [UserController::class, 'show']);
     Route::match(['DELETE'], '/destroy/{id}', [UserController::class, 'delete']);
-    Route::match(['POST'], '/getrelated/{id}', [UserController::class, 'relation']);
+    Route::match(['GET'], '/orders/{id}', [UserController::class, 'getOrders']);
 });
 Route::prefix('products')->group(function () {
     Route::match(['POST'], '/create', [ProductController::class, 'store']);

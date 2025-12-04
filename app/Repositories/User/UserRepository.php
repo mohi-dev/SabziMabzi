@@ -10,5 +10,5 @@ use LaravelEasyRepository\Repository;
 interface UserRepository extends Repository
 {
 
-    public function getRelatedOrders(string|int $id): ?Collection;
+    public function getOrders(string|int $id): ?Collection;
 }

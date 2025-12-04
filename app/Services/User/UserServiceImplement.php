@@ -86,10 +86,10 @@ class UserServiceImplement extends ServiceApi implements UserService
     }
   }
 
-  public function getRelatedOrders($id): UserService
+  public function getOrders($id): UserService
   {
     try {
-      return $this->setData($this->userRepository->getRelatedOrders($id))
+      return $this->setData($this->userRepository->getOrders($id))
         ->setMessage('ok')
         ->setCode(Response::HTTP_OK);
     } catch (\Exception $exception) {

@@ -22,7 +22,7 @@ class UserRepositoryImplement extends Eloquent implements UserRepository
     {
         $this->model = $model;
     }
-    public function getRelatedOrders(string|int $id): ?Collection
+    public function getOrders(string|int $id): ?Collection
     {
         $user = $this->findOrFail($id);
         return $user->orders;

@@ -7,5 +7,5 @@ use LaravelEasyRepository\BaseService;
 interface UserService extends BaseService
 {
 
-    public function getRelatedOrders(string|int $id): UserService;
+    public function getOrders(string|int $id): UserService;
 }

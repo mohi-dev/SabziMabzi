@@ -39,8 +39,8 @@ class UserController extends Controller
         return $this->userService->delete($id)->toJson();
     }
 
-    public function relation(string|int $id): JsonResponse
+    public function getOrders(string|int $id): JsonResponse
     {
-        return $this->userService->getRelatedOrders($id)->toJson();
+        return $this->userService->getOrders($id)->toJson();
     }
 }
