@@ -30,5 +30,6 @@ Route::prefix('products')->group(function () {
 Route::prefix('orders')->group(function () {
     Route::match(['POST'], '/add', [OrderController::class, 'store']);
     Route::match(['POST'], '/edit/{id}', [OrderController::class, 'update']);
+    Route::match(['GET'], '/', [OrderController::class, 'list']);
     Route::match(['GET'], '/{id}', [OrderController::class, 'show']);
 });

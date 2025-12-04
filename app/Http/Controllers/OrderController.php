@@ -28,6 +28,11 @@ class OrderController extends Controller
         return $this->orderService->update($id, $request->validated())->toJson();
     }
 
+    public function list(): JsonResponse
+    {
+        return $this->orderService->all()->toJson();
+    }
+
     public function show($id): JsonResponse
     {
         return $this->orderService->findOrFail($id)->toJson();
