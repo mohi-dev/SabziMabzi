@@ -37,4 +37,9 @@ class OrderController extends Controller
     {
         return $this->orderService->findOrFail($id)->toJson();
     }
+
+    public function delete($id): JsonResponse
+    {
+        return $this->orderService->delete($id)->toJson();
+    }
 }
