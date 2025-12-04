@@ -42,4 +42,9 @@ class ProductController extends Controller
     {
         return $this->productService->all()->toJson();
     }
+
+    public function getOrders($id): JsonResponse
+    {
+        return $this->productService->getOrders($id)->toJson();
+    }
 }

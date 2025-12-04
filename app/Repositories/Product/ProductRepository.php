@@ -3,8 +3,9 @@
 namespace App\Repositories\Product;
 
 use LaravelEasyRepository\Repository;
+use Illuminate\Database\Eloquent\Collection;
 
-interface ProductRepository extends Repository{
-
-    // Write something awesome :)
+interface ProductRepository extends Repository
+{
+    public function getOrders(string|int $id): ?Collection;
 }

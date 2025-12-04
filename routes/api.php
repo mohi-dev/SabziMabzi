@@ -23,5 +23,6 @@ Route::prefix('products')->group(function () {
     Route::match(['POST'], '/edit/{id}', [ProductController::class, 'update']);
     Route::match(['GET'], '/', [ProductController::class, 'list']);
     Route::match(['GET'], '/{id}', [ProductController::class, 'show']);
+    Route::match(['GET'], '/orders/{id}', [ProductController::class, 'getOrders']);
     Route::match(['DELETE'], '/destroy/{id}', [ProductController::class, 'delete']);
 });

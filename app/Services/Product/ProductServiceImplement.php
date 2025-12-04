@@ -86,4 +86,15 @@ class ProductServiceImplement extends ServiceApi implements ProductService
       return $this->exceptionResponse($exception);
     }
   }
+
+  public function getOrders(string|int $id): ProductService
+  {
+    try {
+      return $this->setData($this->product_repository->getOrders($id))
+        ->setMessage('ok')
+        ->setCode(Response::HTTP_OK);
+    } catch (\Exception $exception) {
+      return $this->exceptionResponse($exception);
+    }
+  }
 }
