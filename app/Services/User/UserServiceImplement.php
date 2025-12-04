@@ -63,7 +63,16 @@ class UserServiceImplement extends ServiceApi implements UserService
     } catch (\Exception $exception) {
       return $this->exceptionResponse($exception);
     }
-    return parent::all();
+  }
+
+  public function find($id)
+  {
+    try {
+      return $this->setData($this->userRepository->find($id))
+        ->setCode(Response::HTTP_OK);
+    } catch (\Exception $exception) {
+      return $this->exceptionResponse($exception);
+    }
   }
 
   public function getRelatedOrders($id): UserService
