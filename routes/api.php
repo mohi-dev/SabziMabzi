@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
@@ -25,4 +26,7 @@ Route::prefix('products')->group(function () {
     Route::match(['GET'], '/{id}', [ProductController::class, 'show']);
     Route::match(['GET'], '/orders/{id}', [ProductController::class, 'getOrders']);
     Route::match(['DELETE'], '/destroy/{id}', [ProductController::class, 'delete']);
+});
+Route::prefix('orders')->group(function () {
+    Route::match(['POST'], '/add', [OrderController::class, 'store']);
 });
