@@ -37,6 +37,7 @@ class ProductRequest extends FormRequest
             [
                 'title' => 'string',
                 'price' => 'numeric',
+                'weight' => 'numeric',
                 'description' => 'string'
             ];
     }
@@ -45,7 +46,7 @@ class ProductRequest extends FormRequest
     {
         if ($this->is('api/products/add')) {
             return $this->createRules();
-        } elseif ($this->is('api/products/update/*')) {
+        } elseif ($this->is('api/products/edit/*')) {
             return $this->updateRules();
         }
     }
