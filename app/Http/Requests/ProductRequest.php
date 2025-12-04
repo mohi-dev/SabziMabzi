@@ -20,6 +20,17 @@ class ProductRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
 
+    public function createRules()
+    {
+        return
+            [
+                'title' => 'required',
+                'price' => 'required',
+                'weight' => 'required',
+                'description' => 'string'
+            ];
+    }
+
     public function updateRules()
     {
         return
@@ -30,19 +41,9 @@ class ProductRequest extends FormRequest
             ];
     }
 
-    public function createRules()
-    {
-        return
-            [
-                'title' => 'required',
-                'price' => 'required',
-                'description' => 'string'
-            ];
-    }
-
     public function rules(): array
     {
-        if ($this->is('api/products/create')) {
+        if ($this->is('api/products/add')) {
             return $this->createRules();
         } elseif ($this->is('api/products/update/*')) {
             return $this->updateRules();
