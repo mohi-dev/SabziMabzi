@@ -24,6 +24,11 @@ class UserController extends Controller
         return $this->userService->update($id, $request->validated())->toJson();
     }
 
+    public function list()
+    {
+        return $this->userService->all()->toJson();
+    }
+
     public function relation(string|int $id): JsonResponse
     {
         return $this->userService->getRelatedOrders($id)->toJson();

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('users')->group(function () {
     Route::match(['POST'], '/add', [UserController::class, 'store']);
     Route::match(['POST'], '/edit/{id}', [UserController::class, 'update']);
+    Route::match(['GET'], '/', [UserController::class, 'list']);
     Route::match(['POST'], '/getrelated/{id}', [UserController::class, 'relation']);
 });
 Route::prefix('products')->group(function () {
