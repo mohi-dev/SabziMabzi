@@ -5,28 +5,34 @@ namespace App\Models;
 use App\Traits\TimeStamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use DateTimeInterface;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
-    use HasFactory, TimeStamps;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-
-    const CREATED_AT = 'time_created';
-    const UPDATED_AT = 'time_updated';
+    use SoftDeletes, HasFactory, TimeStamps;
 
     protected $fillable = [
         'price',
         'title',
         'description',
+        'weight'
     ];
 
-    public function orders()
+    /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @param  \DateTimeInterface  $date
+     * @return string
+     */
+    protected function serializeDate(DateTimeInterface $date)
     {
-        return $this->belongsToMany(Order::class, 'order_product', 'product_id', 'order_id');
+        return $date->format('Y-m-d H:i:s');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'product_id');
     }
 }

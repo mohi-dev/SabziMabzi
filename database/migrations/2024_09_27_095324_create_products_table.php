@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('price');
+            $table->integer('weight');
             $table->string('description')->nullable();
-            $table->unsignedInteger('time_created')->nullable();
-            $table->unsignedInteger('time_updated')->nullable();
-            $table->unsignedInteger('deleted_at')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
             $table->engine = 'InnoDB';
         });
     }

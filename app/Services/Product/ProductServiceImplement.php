@@ -48,7 +48,40 @@ class ProductServiceImplement extends ServiceApi implements ProductService
     try {
       return $this->setData($this->product_repository->update($id, $data))
         ->setMessage('Updated')
-        ->setCode(Response::HTTP_CREATED);
+        ->setCode(Response::HTTP_OK);
+    } catch (\Exception $exception) {
+      return $this->exceptionResponse($exception);
+    }
+  }
+
+  public function findOrFail($id): ProductService
+  {
+    try {
+      return $this->setData($this->product_repository->findOrFail($id))
+        ->setMessage('Data Found !')
+        ->setCode(Response::HTTP_FOUND);
+    } catch (\Exception $exception) {
+      return $this->exceptionResponse($exception);
+    }
+  }
+
+  public function all(): ProductService
+  {
+    try {
+      return $this->setData($this->product_repository->all())
+        ->setMessage('Data Found !')
+        ->setCode(Response::HTTP_FOUND);
+    } catch (\Exception $exception) {
+      return $this->exceptionResponse($exception);
+    }
+  }
+
+  public function delete($id): ProductService
+  {
+    try {
+      return $this->setData($this->product_repository->delete($id))
+        ->setMessage('Data Deleted !')
+        ->setCode(Response::HTTP_OK);
     } catch (\Exception $exception) {
       return $this->exceptionResponse($exception);
     }

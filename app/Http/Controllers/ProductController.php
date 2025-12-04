@@ -28,8 +28,18 @@ class ProductController extends Controller
         return $this->productService->update($id, $request->validated())->toJson();
     }
 
-    public function show(): JsonResponse
+    public function show($id): JsonResponse
     {
-        return $this->productService->findByEmail('mohammad@gmail.comw')->toJson();
+        return $this->productService->findOrFail($id)->toJson();
+    }
+
+    public function delete($id): JsonResponse
+    {
+        return $this->productService->delete($id)->toJson();
+    }
+
+    public function list(): JsonResponse
+    {
+        return $this->productService->all()->toJson();
     }
 }

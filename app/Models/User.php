@@ -4,20 +4,19 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Traits\TimeStamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use DateTimeInterface;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
-    use TimeStamps, HasFactory, Notifiable, HasApiTokens;
+    use SoftDeletes, HasFactory, Notifiable, HasApiTokens;
 
-
-    const CREATED_AT = 'time_created';
-    const UPDATED_AT = 'time_updated';
     protected $table = 'users';
 
     /**
@@ -27,8 +26,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
+        'phone',
+        'address',
     ];
 
     /**
@@ -54,8 +53,19 @@ class User extends Authenticatable
         ];
     }
 
-    public function orders(): MorphMany
+    /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @param  \DateTimeInterface  $date
+     * @return string
+     */
+    protected function serializeDate(DateTimeInterface $date)
     {
-        return $this->morphMany(Order::class, 'orderable');
+        return $date->format('Y-m-d H:i:s');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'user_id');
     }
 }

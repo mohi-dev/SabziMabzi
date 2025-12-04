@@ -19,12 +19,22 @@ class UserRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+
+    public function createRules()
+    {
+        return
+            [
+                'name' => 'required',
+                'address' => 'required',
+                'phone' => ['required', 'regex:/^(09)(\d{9})$/im'],
+            ];
+    }
+
     public function rules(): array
     {
-        return [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ];
+        if ($this->is('api/users/add')) {
+            return $this->createRules();
+        }
+        return [];
     }
 }
