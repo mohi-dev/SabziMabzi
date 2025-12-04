@@ -34,10 +34,26 @@ class OrderRequest extends FormRequest
             ];
     }
 
+    public function updateRules()
+    {
+        return
+            [
+                'quantity' => 'numeric',
+                'cost' => 'numeric',
+                'order_date' => 'date_format:Y-m-d H:i:s',
+                'delivery_time' => 'date_format:Y-m-d H:i:s',
+                'description' => 'string',
+                'user_id' => 'integer',
+                'product_id' => 'integer'
+            ];
+    }
+
     public function rules(): array
     {
         if ($this->is('api/orders/add')) {
             return $this->createRules();
+        } elseif ($this->is('api/orders/edit/*')) {
+            return $this->updateRules();
         }
     }
 }

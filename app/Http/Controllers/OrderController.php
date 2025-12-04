@@ -22,4 +22,9 @@ class OrderController extends Controller
     {
         return $this->orderService->create($request->validated())->toJson();
     }
+
+    public function update(OrderRequest $request, $id): JsonResponse
+    {
+        return $this->orderService->update($id, $request->validated())->toJson();
+    }
 }
