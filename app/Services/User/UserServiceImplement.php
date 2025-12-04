@@ -75,6 +75,17 @@ class UserServiceImplement extends ServiceApi implements UserService
     }
   }
 
+  public function delete($id)
+  {
+    try {
+      return $this->setData($this->userRepository->delete($id))
+        ->setMessage('Deleted !')
+        ->setCode(Response::HTTP_OK);
+    } catch (\Exception $exception) {
+      return $this->exceptionResponse($exception);
+    }
+  }
+
   public function getRelatedOrders($id): UserService
   {
     try {
